@@ -69,8 +69,11 @@ class _IntroViewBodyState extends State<IntroViewBody>
   }
 
   void navigateToSelection() {
-    Future.delayed(const Duration(seconds: 2), () {
-      GoRouter.of(context).push(AppRouter.kSelectionView);
-    });
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        GoRouter.of(context).push(AppRouter.kSelectionView);
+      },
+    );
   }
 }
