@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:stud/constants.dart';
+import 'package:stud/features/splash/presentaion/views/widgets/selection_Widget.dart';
 
 class SelectionViewBody extends StatelessWidget {
   const SelectionViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "this is selection view",
+    return Scaffold(
+        body: Column(
+      children: [
+        SelectionWidget(
+          color: kColor3,
+          text: "Student Activity",
+          onPressed: () {},
         ),
-      ),
-    );
+        SelectionWidget(
+          color: kColor2,
+          text: "Student",
+          onPressed: () {},
+        )
+      ],
+    ));
   }
 }
