@@ -53,13 +53,13 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     onchanged: (data) {},
                   ),
                   const SizedBox(height: 15),
-                  CustomTextField(
+                  CustomTextFieldPassword(
                     hinttext: 'Password',
                     onchanged: (data) {},
                     obsecuretext: true,
                   ),
                   const SizedBox(height: 15),
-                  CustomTextField(
+                  CustomTextFieldPassword(
                     hinttext: 'Re enter password',
                     onchanged: (data) {},
                     obsecuretext: true,

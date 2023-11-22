@@ -51,7 +51,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   onchanged: (data) {},
                 ),
                 const SizedBox(height: 15),
-                CustomTextField(
+                CustomTextFieldPassword(
                   hinttext: 'Password',
                   onchanged: (data) {},
                   obsecuretext: true,

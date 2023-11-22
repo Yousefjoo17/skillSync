@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:stud/constants.dart';
 import 'package:stud/core/methods/Custom_Box_Decoration.dart';
 import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/core/utils/assets_data.dart';
@@ -35,7 +36,7 @@ class _StartViewBodyState extends State<StartViewBody>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: customBoxDecoration(),
+        decoration: customBoxDecoration([kColor1,kColor2,kColor3]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
