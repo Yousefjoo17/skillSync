@@ -74,7 +74,7 @@ class _IntroViewBodyState extends State<IntroViewBody>
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        GoRouter.of(context).push(AppRouter.kSelectionView);
+        GoRouter.of(context).push(AppRouter.kWelcomeView);
       },
     );
   }

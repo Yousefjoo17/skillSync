@@ -3,8 +3,8 @@ import 'package:stud/constants.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/core/widgets/custom_button.dart';
 
-class WelcomeStudentViewBody extends StatelessWidget {
-  const WelcomeStudentViewBody({super.key});
+class WelcomeViewBody extends StatelessWidget {
+  const WelcomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

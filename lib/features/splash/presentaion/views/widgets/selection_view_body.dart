@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:stud/constants.dart';
-import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/features/splash/presentaion/views/widgets/selection_Widget.dart';
 
 class SelectionViewBody extends StatelessWidget {
@@ -16,14 +14,14 @@ class SelectionViewBody extends StatelessWidget {
           color: kColor3,
           text: "Student Activity",
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kWelcomeActivity);
+            //GoRouter.of(context).push(AppRouter.kWelcomeActivity);
           },
         ),
         SelectionWidget(
           color: kColor2,
           text: "Student",
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kWelcomeStudent);
+           // GoRouter.of(context).push(AppRouter.kWelcomeView);
           },
         )
       ],
