@@ -47,6 +47,17 @@ class _IntroViewBodyState extends State<IntroViewBody>
               fit: BoxFit.fitHeight,
             ),
             const SizedBox(height: 6),
+            const Center(
+              child: Text(
+                'SkillSync',
+                style: TextStyle(
+                  fontSize: 40,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'Caveat',
+                ),
+              ),
+            ),
             SlidingText(
               slidingAnimation: slidingAnimation,
               text: 'match your passion and skills',

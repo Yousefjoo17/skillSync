@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stud/constants.dart';
+import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/core/widgets/custom_button.dart';
 
@@ -26,14 +28,18 @@ class WelcomeViewBody extends StatelessWidget {
           ),
           const SizedBox(height: 50),
           CustomButton(
-            text: "Register ",
-            ontap: () {},
+            text: "Register",
+            ontap: () {
+              GoRouter.of(context).push(AppRouter.kRegister);
+            },
             color: kColor1,
           ),
           const SizedBox(height: 30),
           CustomButton(
             text: "Login ",
-            ontap: () {},
+            ontap: () {
+              GoRouter.of(context).push(AppRouter.kLogin);
+            },
             color: kColor3,
           ),
         ],
