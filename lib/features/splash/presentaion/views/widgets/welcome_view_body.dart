@@ -18,6 +18,27 @@ class WelcomeViewBody extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Text(
+                'Welcome in ',
+                style: TextStyle(
+                  fontSize: 35,
+                ),
+              ),
+              Text(
+                'SkillSync',
+                style: TextStyle(
+                  fontSize: 40,
+                  fontFamily: 'Caveat',
+                  fontWeight: FontWeight.w900,
+                  color: kColor2,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 60),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               Image.asset(
                 AssetsData.kYouth,
                 height: 140,
@@ -26,7 +47,7 @@ class WelcomeViewBody extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 60),
           CustomButton(
             text: "Register",
             ontap: () {

@@ -15,7 +15,6 @@ class LoginViewBody extends StatefulWidget {
 
 class _LoginViewBodyState extends State<LoginViewBody> {
   bool isLoading = false;
-
   GlobalKey<FormState> formkey = GlobalKey();
 
   @override
