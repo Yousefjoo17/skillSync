@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:stud/features/splash/presentaion/views/widgets/intro_view_body.dart';
+import 'package:stud/features/splash/presentaion/views/widgets/start_view_body.dart';
 
-class IntroView extends StatelessWidget {
-  const IntroView({super.key});
+class StartView extends StatelessWidget {
+  const StartView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const IntroViewBody();
+    return const StartViewBody();
   }
 }

@@ -5,14 +5,14 @@ import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/features/splash/presentaion/views/widgets/sliding_text.dart';
 
-class IntroViewBody extends StatefulWidget {
-  const IntroViewBody({super.key});
+class StartViewBody extends StatefulWidget {
+  const StartViewBody({super.key});
 
   @override
-  State<IntroViewBody> createState() => _IntroViewBodyState();
+  State<StartViewBody> createState() => _StartViewBodyState();
 }
 
-class _IntroViewBodyState extends State<IntroViewBody>
+class _StartViewBodyState extends State<StartViewBody>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController; //0:1
   late Animation<Offset> slidingAnimation; //0: .......
