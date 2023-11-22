@@ -42,7 +42,9 @@ class _IntroViewBodyState extends State<IntroViewBody>
           children: [
             Image.asset(
               AssetsData.kLogo,
-              height: 186,
+              height: 120,
+              width: 100,
+              fit: BoxFit.fitHeight,
             ),
             const SizedBox(height: 6),
             SlidingText(
