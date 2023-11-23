@@ -20,80 +20,87 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> formkey = GlobalKey();
+
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Form(
-            key: formkey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(height: 45),
-                  Image.asset(
-                    AssetsData.kMale,
-                    height: 100,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'SkillSync',
-                        style: TextStyle(
-                          fontSize: 35,
-                          fontFamily: 'Caveat',
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 60),
-                  CustomTextField(
-                    hinttext: 'Email',
-                    onchanged: (data) {},
-                  ),
-                  const SizedBox(height: 15),
-                  CustomTextFieldPassword(
-                    hinttext: 'Password',
-                    onchanged: (data) {},
-                    obsecuretext: true,
-                  ),
-                  const SizedBox(height: 15),
-                  CustomTextFieldPassword(
-                    hinttext: 'Re enter password',
-                    onchanged: (data) {},
-                    obsecuretext: true,
-                  ),
-                  const SizedBox(height: 30),
-                  CustomButton(
-                    text: 'Register',
-                    color: kColor1,
-                    ontap: () {
-                      GoRouter.of(context).push(AppRouter.kStudentSurvey);
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Already have an account?',
-                      ),
-                      const SizedBox(width: 10),
-                      GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).push(AppRouter.kLogin);
-                        },
-                        child: Text(
-                          'Log in ',
+        body: SingleChildScrollView(
+          reverse: true,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Form(
+              key: formkey,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 45),
+                    Image.asset(
+                      AssetsData.kMale,
+                      height: 100,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'SkillSync',
                           style: TextStyle(
-                            color: kColor2,
+                            fontSize: 35,
+                            fontFamily: 'Caveat',
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    const SizedBox(height: 60),
+                    CustomTextField(
+                      hinttext: 'Email',
+                      onchanged: (data) {},
+                    ),
+                    const SizedBox(height: 15),
+                    CustomTextFieldPassword(
+                      hinttext: 'Password',
+                      onchanged: (data) {},
+                      obsecuretext: true,
+                    ),
+                    const SizedBox(height: 15),
+                    CustomTextFieldPassword(
+                      hinttext: 'Re enter password',
+                      onchanged: (data) {},
+                      obsecuretext: true,
+                    ),
+                    const SizedBox(height: 30),
+                    CustomButton(
+                      text: 'Continue',
+                      color: kColor1,
+                      ontap: () {
+                        if (formkey.currentState!.validate()) {
+                          GoRouter.of(context).push(AppRouter.kStudentSurvey);
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Already have an account?',
+                        ),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () {
+                            GoRouter.of(context).push(AppRouter.kLogin);
+                          },
+                          child: Text(
+                            'Log in ',
+                            style: TextStyle(
+                              color: kColor2,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

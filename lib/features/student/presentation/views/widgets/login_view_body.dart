@@ -26,64 +26,69 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Form(
             key: formkey,
-            child: ListView(
-              children: [
-                const SizedBox(height: 35),
-                Image.asset(
-                  AssetsData.kFemale,
-                  height: 100,
-                ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'SkillSync',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontFamily: 'Caveat',
+            child: SingleChildScrollView(
+              reverse: true,
+              child: Column(
+                children: [
+                  const SizedBox(height: 50),
+                  Image.asset(
+                    AssetsData.kFemale,
+                    height: 100,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'SkillSync',
+                        style: TextStyle(
+                          fontSize: 35,
+                          fontFamily: 'Caveat',
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 60),
-                CustomTextField(
-                  hinttext: 'Email',
-                  onchanged: (data) {},
-                ),
-                const SizedBox(height: 15),
-                CustomTextFieldPassword(
-                  hinttext: 'Password',
-                  onchanged: (data) {},
-                  obsecuretext: true,
-                ),
-                const SizedBox(height: 35),
-                CustomButton(
-                  text: 'Log in',
-                  color: kColor1,
-                  ontap: () {
-                    GoRouter.of(context).push(AppRouter.kStudentView);
-                  },
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Don\'t have an account?',
-                    ),
-                    const SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).push(AppRouter.kRegister);
-                      },
-                      child: Text(
-                        'Register ',
-                        style: TextStyle(color: kColor3),
+                    ],
+                  ),
+                  const SizedBox(height: 65),
+                  CustomTextField(
+                    hinttext: 'Email',
+                    onchanged: (data) {},
+                  ),
+                  const SizedBox(height: 15),
+                  CustomTextFieldPassword(
+                    hinttext: 'Password',
+                    onchanged: (data) {},
+                    obsecuretext: true,
+                  ),
+                  const SizedBox(height: 35),
+                  CustomButton(
+                    text: 'Log in',
+                    color: kColor1,
+                    ontap: () {
+                      if (formkey.currentState!.validate()) {
+                        GoRouter.of(context).push(AppRouter.kStudentView);
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Don\'t have an account?',
                       ),
-                    )
-                  ],
-                ),
-              ],
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(AppRouter.kRegister);
+                        },
+                        child: Text(
+                          'Register ',
+                          style: TextStyle(color: kColor3),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
