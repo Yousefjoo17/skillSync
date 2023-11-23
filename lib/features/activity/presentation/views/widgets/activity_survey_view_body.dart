@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stud/constants.dart';
 import 'package:stud/core/methods/Custom_Box_Decoration.dart';
+import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/core/widgets/custom_button.dart';
 import 'package:stud/core/widgets/custom_text_field.dart';
@@ -76,7 +78,9 @@ class ActivitySurveyViewBody extends StatelessWidget {
               const SizedBox(height: 20),
               CustomButton(
                 text: "submit",
-                ontap: () {},
+                ontap: () {
+                  GoRouter.of(context).push(AppRouter.kActivityView);
+                },
                 color: kColor1,
               ),
               const SizedBox(height: 20),
