@@ -32,7 +32,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 children: [
                   const SizedBox(height: 45),
                   Image.asset(
-                    AssetsData.kStudentMale,
+                    AssetsData.kMale,
                     height: 100,
                   ),
                   const Row(

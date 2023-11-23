@@ -30,7 +30,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               children: [
                 const SizedBox(height: 35),
                 Image.asset(
-                  AssetsData.kStudentFemale,
+                  AssetsData.kFemale,
                   height: 100,
                 ),
                 const Row(

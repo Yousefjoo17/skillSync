@@ -16,14 +16,14 @@ class SelectionViewBody extends StatelessWidget {
           color: kColor3,
           text: "Student Activity",
           onPressed: () {
-            //GoRouter.of(context).push(AppRouter.kWelcomeActivity);
+            GoRouter.of(context).push(AppRouter.kActivitySurvey);
           },
         ),
         SelectionWidget(
           color: kColor2,
           text: "Student",
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kStudentq1);
+            GoRouter.of(context).push(AppRouter.kStudentSurvey);
           },
         )
       ],

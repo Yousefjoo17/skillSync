@@ -6,10 +6,12 @@ class CustomTextField extends StatelessWidget {
     required this.hinttext,
     this.onchanged,
     this.maxLines,
+    this.keyboardType,
   });
   final String? hinttext;
   final Function(String)? onchanged;
   final int? maxLines;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -22,6 +24,7 @@ class CustomTextField extends StatelessWidget {
       },
       onChanged: onchanged,
       maxLines: maxLines,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         hintText: hinttext,
         hintStyle: const TextStyle(color: Colors.grey),
