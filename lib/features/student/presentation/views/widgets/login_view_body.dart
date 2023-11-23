@@ -60,7 +60,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 CustomButton(
                   text: 'Log in',
                   color: kColor1,
-                  ontap: () {},
+                  ontap: () {
+                    GoRouter.of(context).push(AppRouter.kStudentView);
+                  },
                 ),
                 const SizedBox(height: 15),
                 Row(

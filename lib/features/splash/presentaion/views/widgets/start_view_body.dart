@@ -36,7 +36,7 @@ class _StartViewBodyState extends State<StartViewBody>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: customBoxDecoration([kColor1,kColor2,kColor3]),
+        decoration: customBoxDecoration([kColor1, kColor2, kColor3]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -86,7 +86,7 @@ class _StartViewBodyState extends State<StartViewBody>
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        GoRouter.of(context).push(AppRouter.kWelcomeView);
+        GoRouter.of(context).push(AppRouter.kSelectionView);
       },
     );
   }

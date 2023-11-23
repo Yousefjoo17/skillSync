@@ -23,7 +23,7 @@ class SelectionViewBody extends StatelessWidget {
           color: kColor2,
           text: "Student",
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kStudentSurvey);
+            GoRouter.of(context).push(AppRouter.kWelcomeView);
           },
         )
       ],

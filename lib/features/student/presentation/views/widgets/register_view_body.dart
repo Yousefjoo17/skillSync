@@ -69,7 +69,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     text: 'Register',
                     color: kColor1,
                     ontap: () {
-                      GoRouter.of(context).push(AppRouter.kSelectionView);
+                      GoRouter.of(context).push(AppRouter.kStudentSurvey);
                     },
                   ),
                   const SizedBox(height: 15),

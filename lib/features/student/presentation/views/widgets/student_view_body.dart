@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stud/constants.dart';
 import 'package:stud/core/methods/Custom_Box_Decoration.dart';
-import 'package:stud/core/widgets/List_tile_item.dart';
+import 'package:stud/features/student/presentation/views/widgets/List_tile_activity_widget.dart';
 
 class StudentViewBody extends StatelessWidget {
   const StudentViewBody({super.key});
@@ -36,7 +37,9 @@ class StudentViewBody extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    GoRouter.of(context).pop();
+                  },
                   icon: const Icon(
                     Icons.logout,
                     color: Colors.white,
@@ -50,8 +53,11 @@ class StudentViewBody extends StatelessWidget {
             child: ListView.builder(
               itemCount: 20,
               itemBuilder: (context, index) {
-                return const ListTileItem(
-                  icon: Icon(Icons.people),
+                return const ListTileActivityWidget(
+                  icon: Icon(
+                    Icons.people,
+                    size: 30,
+                  ),
                 );
               },
             ),

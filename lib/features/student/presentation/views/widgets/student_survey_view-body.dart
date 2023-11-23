@@ -71,7 +71,7 @@ class StudentSurveyViewBody extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               CustomButton(
-                text: "submit",
+                text: "Register",
                 ontap: () {
                   GoRouter.of(context).push(AppRouter.kStudentView);
                 },

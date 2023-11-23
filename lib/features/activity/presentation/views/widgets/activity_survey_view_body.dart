@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stud/constants.dart';
 import 'package:stud/core/methods/Custom_Box_Decoration.dart';
-import 'package:stud/core/utils/app_router.dart';
+import 'package:stud/core/methods/show_snack_bar.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/core/widgets/custom_button.dart';
 import 'package:stud/core/widgets/custom_text_field.dart';
@@ -27,11 +27,11 @@ class ActivitySurveyViewBody extends StatelessWidget {
               const SizedBox(height: 30),
               const Center(
                 child: Text(
-                  "tell us about the organization",
-                  style: TextStyle(fontSize: 24),
+                  "tell us about your organization to insert it",
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
               CustomTextField(
                 hinttext: "oeganization name",
                 onchanged: (p0) {},
@@ -79,7 +79,9 @@ class ActivitySurveyViewBody extends StatelessWidget {
               CustomButton(
                 text: "submit",
                 ontap: () {
-                  GoRouter.of(context).push(AppRouter.kActivityView);
+                  showmySnackBar(
+                      context, "your organization has been added successfully");
+                  GoRouter.of(context).pop();
                 },
                 color: kColor1,
               ),
