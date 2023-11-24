@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stud/constants.dart';
+import 'package:stud/core/methods/show_snack_bar.dart';
 import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/core/widgets/custom_button.dart';
 import 'package:stud/core/widgets/custom_text_field.dart';
+import 'package:stud/main.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
@@ -21,6 +23,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formkey = GlobalKey();
+    String? reEnterdpass;
 
     return ModalProgressHUD(
       inAsyncCall: isLoading,
@@ -54,27 +57,44 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     const SizedBox(height: 60),
                     CustomTextField(
                       hinttext: 'Email',
-                      onchanged: (data) {},
+                      onchanged: (data) {
+                        studentModel.email = data;
+                      },
                     ),
                     const SizedBox(height: 15),
                     CustomTextFieldPassword(
                       hinttext: 'Password',
-                      onchanged: (data) {},
+                      onchanged: (data) {
+                        studentModel.password = data;
+                      },
                       obsecuretext: true,
                     ),
                     const SizedBox(height: 15),
                     CustomTextFieldPassword(
                       hinttext: 'Re enter password',
-                      onchanged: (data) {},
+                      onchanged: (data) {
+                        reEnterdpass = data;
+                      },
                       obsecuretext: true,
                     ),
                     const SizedBox(height: 30),
                     CustomButton(
                       text: 'Continue',
                       color: kColor1,
-                      ontap: () {
+                      ontap: () async {
                         if (formkey.currentState!.validate()) {
-                          GoRouter.of(context).push(AppRouter.kStudentSurvey);
+                          if (await sqlDb
+                              .isEmailAvailable(studentModel.email!)) {
+                            if (studentModel.password == reEnterdpass) {
+                              GoRouter.of(context)
+                                  .push(AppRouter.kStudentSurvey);
+                            } else {
+                              showmySnackBar(context, "passwords missmatch");
+                            }
+                          } else {
+                            showmySnackBar(
+                                context, "the email is already used");
+                          }
                         }
                       },
                     ),

@@ -2,25 +2,25 @@ import 'package:stud/constants.dart';
 
 class StudentModel {
   StudentModel({
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.city,
-    required this.major,
-    required this.skills,
-    required this.goal,
-    required this.weeklyH,
-    required this.id,
+     this.name,
+     this.email,
+     this.password,
+     this.city,
+     this.major,
+     this.skills,
+     this.goal,
+     this.weeklyH,
+     this.id,
   });
-  final int id;
-  final String name;
-  final String email;
-  final String password;
-  final String city;
-  final String major;
-  final String skills;
-  final String goal;
-  final int weeklyH;
+   int? id;
+   String? name;
+   String? email;
+   String? password;
+   String? city;
+   String? major;
+   String? skills;
+   String? goal;
+   int? weeklyH;
 
   factory StudentModel.fromJson(Map<String, dynamic> json) {
     return StudentModel(
@@ -34,5 +34,18 @@ class StudentModel {
       email: json[kStudEmail] as String,
       password: json[kStudPassword] as String,
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      kStudName: name,
+      kStudEmail: email,
+      kStudPassword: password,
+      kStudCity: city,
+      kStudMajor: major,
+      kStudSkills: skills,
+      kStudGoal: goal,
+      kStudweeklyH: weeklyH,
+    };
   }
 }

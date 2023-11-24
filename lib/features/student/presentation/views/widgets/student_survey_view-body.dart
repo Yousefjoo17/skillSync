@@ -6,6 +6,7 @@ import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/core/widgets/custom_button.dart';
 import 'package:stud/core/widgets/custom_text_field.dart';
+import 'package:stud/main.dart';
 
 class StudentSurveyViewBody extends StatelessWidget {
   const StudentSurveyViewBody({super.key});
@@ -34,45 +35,67 @@ class StudentSurveyViewBody extends StatelessWidget {
               const SizedBox(height: 20),
               CustomTextField(
                 hinttext: "name",
-                onchanged: (p0) {},
+                onchanged: (p0) {
+                  studentModel.name = p0;
+                },
               ),
               const SizedBox(height: 20),
               CustomTextField(
                 hinttext: "city",
-                onchanged: (p0) {},
+                onchanged: (p0) {
+                  studentModel.city = p0;
+                },
               ),
               const SizedBox(height: 20),
               CustomTextField(
                 hinttext: "major of studying",
-                onchanged: (p0) {},
+                onchanged: (p0) {
+                  studentModel.major = p0;
+                },
               ),
               const SizedBox(height: 20),
-              const CustomTextField(
+              CustomTextField(
                 hinttext: "your skills  eg:programming, public speaking",
                 maxLines: 2,
+                onchanged: (p0) {
+                  studentModel.skills = p0;
+                },
               ),
               const SizedBox(height: 20),
-              const CustomTextField(
+              CustomTextField(
                 hinttext:
                     "skills you want to develop eg:programming, public speaking",
                 maxLines: 2,
+                onchanged: (p0) {},
               ),
               const SizedBox(height: 20),
-              const CustomTextField(
+              CustomTextField(
                 hinttext: "hobbies and interests",
                 maxLines: 2,
+                onchanged: (p0) {},
               ),
               const SizedBox(height: 20),
-              const CustomTextField(hinttext: "goals", maxLines: 3),
+              CustomTextField(
+                hinttext: "goals",
+                maxLines: 3,
+                onchanged: (p0) {
+                  studentModel.goal = p0;
+                },
+              ),
               const SizedBox(height: 20),
-              const CustomTextField(
+              CustomTextField(
                 hinttext: "weekly available time",
                 keyboardType: TextInputType.number,
+                onchanged: (p0) {
+                  studentModel.weeklyH = int.parse(p0);
+                },
               ),
               const SizedBox(height: 20),
               CustomButton(
                 text: "Register",
-                ontap: () {
+                ontap: () async {
+                  
+                  await sqlDb.insertStudent(studentModel);
                   GoRouter.of(context).push(AppRouter.kStudentView);
                 },
                 color: kColor1,

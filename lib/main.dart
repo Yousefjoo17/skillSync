@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:stud/core/utils/SyncSkillDB.dart';
 import 'package:stud/core/utils/app_router.dart';
+import 'package:stud/features/student/presentation/view_models/student_modal.dart';
+
+late SqlDb sqlDb;
+final StudentModel studentModel = StudentModel();
 
 void main() {
+     sqlDb = SqlDb();
   runApp(const SkillSync());
 }
 
