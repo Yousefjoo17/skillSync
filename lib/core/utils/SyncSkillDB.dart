@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:stud/constants.dart';
+import 'package:stud/features/activity/presentation/view_model/activity_model.dart';
 import 'package:stud/features/student/presentation/view_models/student_modal.dart';
 
 class SqlDb {
@@ -42,7 +43,7 @@ class SqlDb {
     )
   ''');
 
-   await db.execute('''
+    await db.execute('''
     CREATE TABLE $ktableActivity (
       $kActivityId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       $kActivityName TEXT NOT NULL,
@@ -56,7 +57,7 @@ class SqlDb {
     )
   ''');
 
- await db.execute('''
+    await db.execute('''
     CREATE TABLE $kTablejoint (
       $kStudId INTEGER,
       $kActivityId INTEGER,
@@ -75,7 +76,9 @@ class SqlDb {
     print(" onCreate =====================================");
   }
 
- Future<bool> isEmailAvailable(String email) async {
+//////////////////////////////////////////////
+
+  Future<bool> isEmailAvailable(String email) async {
     Database? mydb = await db;
     List<Map<String, dynamic>> result = await mydb!.rawQuery(
       'SELECT COUNT(*) as count FROM $ktableStud WHERE $kStudEmail = ?',
@@ -84,8 +87,8 @@ class SqlDb {
     int count = Sqflite.firstIntValue(result) ?? 0;
     return count == 0;
   }
-  
-   Future<List<StudentModel>> getAllStudents() async {
+
+  Future<List<StudentModel>> getAllStudents() async {
     Database? mydb = await db;
     List<Map<String, dynamic>> result = await mydb!.query(ktableStud);
 
@@ -104,26 +107,61 @@ class SqlDb {
     });
   }
 
+  Future<List<ActivityModel>> getAllActivities() async {
+    Database? mydb = await db;
+    final List<Map<String, dynamic>> maps = await mydb!.query(ktableActivity);
+
+    // Convert the List of Maps into a List of ActivityModel
+    return List.generate(maps.length, (i) {
+      return ActivityModel(
+        id: maps[i][kActivityId] as int?,
+        name: maps[i][kActivityName] as String?,
+        city: maps[i][kActivityCity] as String?,
+        majors: maps[i][kActivityMajors] as String?,
+        skills: maps[i][kActivitySkills] as String?,
+        goal: maps[i][kActivityGoal] as String?,
+        weeklyH: maps[i][kActivityweeklyH] as int?,
+        fb: maps[i][kActivityFB] as String?,
+        linkedin: maps[i][kActivityLinked] as String?,
+      );
+    });
+  }
+
   Future<void> insertStudent(StudentModel student) async {
     Database? mydb = await db;
     await mydb!.insert(
       ktableStud,
-      student.toMap(), // Assuming you have a toMap method in your StudentModel
+      student.toMap(), 
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
-  updateData(String sql) async {
+  Future<void> insertActivity(ActivityModel activity) async {
     Database? mydb = await db;
-    int response = await mydb!.rawUpdate(sql);
-    return response;
+    await mydb!.insert(
+      ktableActivity,
+      activity.toMap(), 
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
-  deleteData(String sql) async {
-    Database? mydb = await db;
-    int response = await mydb!.rawDelete(sql);
-    return response;
+
+  Future<void> printActivityListInfo() async {
+  List<ActivityModel> activityList = await getAllActivities();
+
+  for (ActivityModel activity in activityList) {
+    print('Activity ID: ${activity.id}');
+    print('Name: ${activity.name}');
+    print('City: ${activity.city}');
+    print('Majors: ${activity.majors}');
+    print('Skills: ${activity.skills}');
+    print('Goal: ${activity.goal}');
+    print('Weekly Hours: ${activity.weeklyH}');
+    print('Facebook: ${activity.fb}');
+    print('LinkedIn: ${activity.linkedin}');
+    print('------------------------');
   }
+}
 }
 
 // SELECT 

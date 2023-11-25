@@ -108,6 +108,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         const SizedBox(width: 10),
                         GestureDetector(
                           onTap: () {
+                            
                             GoRouter.of(context).push(AppRouter.kLogin);
                           },
                           child: Text(

@@ -24,13 +24,7 @@ class SelectionViewBody extends StatelessWidget {
         SelectionWidget(
           color: kColor2,
           text: "Student",
-          onPressed: () async {
-            List<StudentModel> allStudents = await sqlDb.getAllStudents();
-            print(
-                "0000000000000000000000000000000000000000000000000000000000000000");
-            allStudents.forEach((student) {
-              print(student.city);
-            });
+          onPressed: ()  {            
             GoRouter.of(context).push(AppRouter.kWelcomeView);
           },
         )

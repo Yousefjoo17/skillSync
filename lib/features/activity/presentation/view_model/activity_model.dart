@@ -2,25 +2,39 @@ import 'package:stud/constants.dart';
 
 class ActivityModel {
   ActivityModel({
-    required this.fb,
-    required this.linkedin,
-    required this.name,
-    required this.city,
-    required this.majors,
-    required this.skills,
-    required this.goal,
-    required this.weeklyH,
-    required this.id,
+     this.fb,
+     this.linkedin,
+     this.name,
+     this.city,
+     this.majors,
+     this.skills,
+     this.goal,
+     this.weeklyH,
+     this.id,
   });
-  final int id;
-  final String name;
-  final String city;
-  final String majors;
-  final String skills;
-  final String goal;
-  final int weeklyH;
-  final String fb;
-  final String linkedin;
+   int? id;
+   String? name;
+   String? city;
+   String? majors;
+   String? skills;
+   String? goal;
+   int? weeklyH;
+   String? fb;
+   String? linkedin;
+
+Map<String, dynamic> toMap() {
+    return {
+      kActivityId: id,
+      kActivityName: name,
+      kActivityCity: city,
+      kActivityMajors: majors,
+      kActivitySkills: skills,
+      kActivityGoal: goal,
+      kActivityweeklyH: weeklyH,
+      kActivityFB: fb,
+      kActivityLinked: linkedin,
+    };
+  }
 
   factory ActivityModel.fromJson(Map<String, dynamic> json) {
     return ActivityModel(
