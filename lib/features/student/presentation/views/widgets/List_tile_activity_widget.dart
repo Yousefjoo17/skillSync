@@ -20,8 +20,8 @@ class ListTileActivityWidget extends StatelessWidget {
                 activityModel.name!,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
+              const Spacer(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
                     onPressed: () {},

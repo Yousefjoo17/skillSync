@@ -110,7 +110,6 @@ class _ActivitySurveyViewBodyState extends State<ActivitySurveyViewBody> {
                     print("=================================================");
 
                     await sqlDb.printActivityListInfo();
-                     activities =await sqlDb.getAllActivitiesFilterd(studentModel!.major!);
 
 
                     showmySnackBar(context,
