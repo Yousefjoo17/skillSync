@@ -110,6 +110,9 @@ class _ActivitySurveyViewBodyState extends State<ActivitySurveyViewBody> {
                     print("=================================================");
 
                     await sqlDb.printActivityListInfo();
+                     activities =await sqlDb.getAllActivitiesFilterd(studentModel!.major!);
+
+
                     showmySnackBar(context,
                         "your organization has been added successfully");
                     GoRouter.of(context).pop();

@@ -58,14 +58,14 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     CustomTextField(
                       hinttext: 'Email',
                       onchanged: (data) {
-                        studentModel.email = data;
+                        studentModel!.email = data;
                       },
                     ),
                     const SizedBox(height: 15),
                     CustomTextFieldPassword(
                       hinttext: 'Password',
                       onchanged: (data) {
-                        studentModel.password = data;
+                        studentModel!.password = data;
                       },
                       obsecuretext: true,
                     ),
@@ -84,8 +84,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       ontap: () async {
                         if (formkey.currentState!.validate()) {
                           if (await sqlDb
-                              .isEmailAvailable(studentModel.email!)) {
-                            if (studentModel.password == reEnterdpass) {
+                              .isEmailAvailable(studentModel!.email!)) {
+                            if (studentModel!.password == reEnterdpass) {
                               GoRouter.of(context)
                                   .push(AppRouter.kStudentSurvey);
                             } else {

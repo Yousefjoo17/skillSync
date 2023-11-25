@@ -3,8 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:stud/constants.dart';
 import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/features/splash/presentaion/views/widgets/selection_Widget.dart';
-import 'package:stud/features/student/presentation/view_models/student_modal.dart';
-import 'package:stud/main.dart';
 
 class SelectionViewBody extends StatelessWidget {
   const SelectionViewBody({super.key});

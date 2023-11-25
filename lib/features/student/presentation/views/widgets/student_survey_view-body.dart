@@ -36,21 +36,21 @@ class StudentSurveyViewBody extends StatelessWidget {
               CustomTextField(
                 hinttext: "name",
                 onchanged: (p0) {
-                  studentModel.name = p0;
+                  studentModel!.name = p0;
                 },
               ),
               const SizedBox(height: 20),
               CustomTextField(
                 hinttext: "city",
                 onchanged: (p0) {
-                  studentModel.city = p0;
+                  studentModel!.city = p0;
                 },
               ),
               const SizedBox(height: 20),
               CustomTextField(
                 hinttext: "major of studying",
                 onchanged: (p0) {
-                  studentModel.major = p0;
+                  studentModel!.major = p0;
                 },
               ),
               const SizedBox(height: 20),
@@ -58,7 +58,7 @@ class StudentSurveyViewBody extends StatelessWidget {
                 hinttext: "your skills  eg:programming, public speaking",
                 maxLines: 2,
                 onchanged: (p0) {
-                  studentModel.skills = p0;
+                  studentModel!.skills = p0;
                 },
               ),
               const SizedBox(height: 20),
@@ -79,7 +79,7 @@ class StudentSurveyViewBody extends StatelessWidget {
                 hinttext: "goals",
                 maxLines: 3,
                 onchanged: (p0) {
-                  studentModel.goal = p0;
+                  studentModel!.goal = p0;
                 },
               ),
               const SizedBox(height: 20),
@@ -87,15 +87,19 @@ class StudentSurveyViewBody extends StatelessWidget {
                 hinttext: "weekly available time",
                 keyboardType: TextInputType.number,
                 onchanged: (p0) {
-                  studentModel.weeklyH = int.parse(p0);
+                  studentModel!.weeklyH = int.parse(p0);
                 },
               ),
               const SizedBox(height: 20),
               CustomButton(
                 text: "Register",
                 ontap: () async {
-                  
-                  await sqlDb.insertStudent(studentModel);
+                  await sqlDb.insertStudent(studentModel!);
+                  await sqlDb.printAllStudentsInfo();
+                  studentModel = await sqlDb.getUserIfExists(
+                      studentModel!.email!, studentModel!.password!);
+                  activities =
+                      await sqlDb.getAllActivitiesFilterd(studentModel!.major!);
                   GoRouter.of(context).push(AppRouter.kStudentView);
                 },
                 color: kColor1,

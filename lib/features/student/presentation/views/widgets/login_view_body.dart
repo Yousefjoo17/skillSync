@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:stud/constants.dart';
+import 'package:stud/core/methods/show_snack_bar.dart';
 import 'package:stud/core/utils/app_router.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/core/widgets/custom_button.dart';
 import 'package:stud/core/widgets/custom_text_field.dart';
+import 'package:stud/main.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -50,21 +52,34 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   const SizedBox(height: 65),
                   CustomTextField(
                     hinttext: 'Email',
-                    onchanged: (data) {},
+                    onchanged: (data) {
+                      studentModel!.email = data;
+                    },
                   ),
                   const SizedBox(height: 15),
                   CustomTextFieldPassword(
                     hinttext: 'Password',
-                    onchanged: (data) {},
+                    onchanged: (data) {
+                      studentModel!.password = data;
+                    },
                     obsecuretext: true,
                   ),
                   const SizedBox(height: 35),
                   CustomButton(
                     text: 'Log in',
                     color: kColor1,
-                    ontap: () {
+                    ontap: () async {
                       if (formkey.currentState!.validate()) {
-                        GoRouter.of(context).push(AppRouter.kStudentView);
+                        if (await sqlDb.doesUserExist(
+                            studentModel!.email!, studentModel!.password!)) {
+                          studentModel = await sqlDb.getUserIfExists(
+                              studentModel!.email!, studentModel!.password!);
+                          activities = await sqlDb
+                              .getAllActivitiesFilterd(studentModel!.major!);
+                          GoRouter.of(context).push(AppRouter.kStudentView);
+                        } else {
+                          showmySnackBar(context, "user not found");
+                        }
                       }
                     },
                   ),
@@ -77,7 +92,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       ),
                       const SizedBox(width: 10),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           GoRouter.of(context).push(AppRouter.kRegister);
                         },
                         child: Text(

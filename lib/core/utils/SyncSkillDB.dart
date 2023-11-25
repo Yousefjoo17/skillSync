@@ -131,7 +131,7 @@ class SqlDb {
     Database? mydb = await db;
     await mydb!.insert(
       ktableStud,
-      student.toMap(), 
+      student.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
@@ -140,29 +140,112 @@ class SqlDb {
     Database? mydb = await db;
     await mydb!.insert(
       ktableActivity,
-      activity.toMap(), 
+      activity.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
+  Future<void> printAllStudentsInfo() async {
+    List<StudentModel> studentList = await getAllStudents();
+
+    for (StudentModel student in studentList) {
+      print('Student ID: ${student.id}');
+      print('Name: ${student.name}');
+      print('Email: ${student.email}');
+      print('City: ${student.city}');
+      print('Major: ${student.major}');
+      print('Skills: ${student.skills}');
+      print('Goal: ${student.goal}');
+      print('Weekly Hours: ${student.weeklyH}');
+      print('------------------------');
+    }
+  }
 
   Future<void> printActivityListInfo() async {
-  List<ActivityModel> activityList = await getAllActivities();
+    List<ActivityModel> activityList = await getAllActivities();
 
-  for (ActivityModel activity in activityList) {
-    print('Activity ID: ${activity.id}');
-    print('Name: ${activity.name}');
-    print('City: ${activity.city}');
-    print('Majors: ${activity.majors}');
-    print('Skills: ${activity.skills}');
-    print('Goal: ${activity.goal}');
-    print('Weekly Hours: ${activity.weeklyH}');
-    print('Facebook: ${activity.fb}');
-    print('LinkedIn: ${activity.linkedin}');
-    print('------------------------');
+    for (ActivityModel activity in activityList) {
+      print('Activity ID: ${activity.id}');
+      print('Name: ${activity.name}');
+      print('City: ${activity.city}');
+      print('Majors: ${activity.majors}');
+      print('Skills: ${activity.skills}');
+      print('Goal: ${activity.goal}');
+      print('Weekly Hours: ${activity.weeklyH}');
+      print('Facebook: ${activity.fb}');
+      print('LinkedIn: ${activity.linkedin}');
+      print('------------------------');
+    }
+  }
+
+  Future<List<ActivityModel>> getAllActivitiesFilterd(String major) async {
+    Database? mydb = await db;
+    final List<Map<String, dynamic>> maps = await mydb!.query(ktableActivity);
+
+    // Filter activities based on the provided major
+    List<ActivityModel> filteredActivities = maps
+        .where((activity) => activity[kActivityMajors] == major)
+        .map((activity) => ActivityModel(
+              id: activity[kActivityId] as int?,
+              name: activity[kActivityName] as String?,
+              city: activity[kActivityCity] as String?,
+              majors: activity[kActivityMajors] as String?,
+              skills: activity[kActivitySkills] as String?,
+              goal: activity[kActivityGoal] as String?,
+              weeklyH: activity[kActivityweeklyH] as int?,
+              fb: activity[kActivityFB] as String?,
+              linkedin: activity[kActivityLinked] as String?,
+            ))
+        .toList();
+
+    return filteredActivities;
+  }
+
+  Future<bool> doesUserExist(String email, String password) async {
+    Database? mydb = await db;
+
+    List<Map<String, dynamic>> result = await mydb!.query(
+      ktableStud,
+      where: '$kStudEmail = ? AND $kStudPassword = ?',
+      whereArgs: [email, password],
+    );
+
+    if (result.isNotEmpty) {
+      return true;
+    }
+
+    return false;
+  }
+
+  Future<StudentModel?> getUserIfExists(String email, String password) async {
+    Database? mydb = await db;
+
+    List<Map<String, dynamic>> result = await mydb!.query(
+      ktableStud,
+      where: '$kStudEmail = ? AND $kStudPassword = ?',
+      whereArgs: [email, password],
+    );
+
+    if (result.isNotEmpty) {
+      // User exists, create and return a StudentModel object
+      return StudentModel(
+        id: result[0][kStudId],
+        name: result[0][kStudName],
+        email: result[0][kStudEmail],
+        password: result[0][kStudPassword],
+        city: result[0][kStudCity],
+        major: result[0][kStudMajor],
+        skills: result[0][kStudSkills],
+        goal: result[0][kStudGoal],
+        weeklyH: result[0][kStudweeklyH],
+      );
+    }
+
+    return null; // Return null if the user does not exist
   }
 }
-}
+
+
 
 // SELECT 
 // DELETE 

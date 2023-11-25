@@ -5,8 +5,9 @@ import 'package:stud/features/activity/presentation/view_model/activity_model.da
 import 'package:stud/features/student/presentation/view_models/student_modal.dart';
 
 late SqlDb sqlDb;
-final StudentModel studentModel = StudentModel();
+ StudentModel? studentModel = StudentModel();
 final ActivityModel activityModel = ActivityModel();
+List<ActivityModel> activities=[];
 
 void main() {
   sqlDb = SqlDb();

@@ -3,11 +3,18 @@ import 'package:go_router/go_router.dart';
 import 'package:stud/constants.dart';
 import 'package:stud/core/methods/Custom_Box_Decoration.dart';
 import 'package:stud/features/student/presentation/views/widgets/List_tile_activity_widget.dart';
+import 'package:stud/main.dart';
 
-class StudentViewBody extends StatelessWidget {
+class StudentViewBody extends StatefulWidget {
   const StudentViewBody({super.key});
-
   @override
+  State<StudentViewBody> createState() => _StudentViewBodyState();
+}
+
+class _StudentViewBodyState extends State<StudentViewBody> {
+  
+  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -51,13 +58,10 @@ class StudentViewBody extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 20,
+              itemCount: activities.length,
               itemBuilder: (context, index) {
-                return const ListTileActivityWidget(
-                  icon: Icon(
-                    Icons.people,
-                    size: 30,
-                  ),
+                return  ListTileActivityWidget(
+                  activityModel: activities[index],
                 );
               },
             ),
