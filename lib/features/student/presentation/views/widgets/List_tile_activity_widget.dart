@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stud/constants.dart';
 import 'package:stud/core/utils/assets_data.dart';
 import 'package:stud/features/activity/presentation/view_model/activity_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ListTileActivityWidget extends StatelessWidget {
   const ListTileActivityWidget({super.key, required this.activityModel});
@@ -24,7 +25,12 @@ class ListTileActivityWidget extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final Uri myUrl = Uri.parse(activityModel.fb!);
+                      if (!await launchUrl(myUrl)) {
+                        throw Exception('Could not launch $myUrl');
+                      }
+                    },
                     icon: const Icon(
                       Icons.facebook,
                       color: Colors.blue,
@@ -32,7 +38,12 @@ class ListTileActivityWidget extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      final Uri myUrl = Uri.parse(activityModel.linkedin!);
+                      if (!await launchUrl(myUrl)) {
+                        throw Exception('Could not launch $myUrl');
+                      }
+                    },
                     child: Image.asset(
                       AssetsData.kLinkedin,
                     ),
